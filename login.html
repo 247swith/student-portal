@@ -26,6 +26,10 @@
             --black-color: #000000;
             --warning-bg: #fff3cd;
             --success-bg: #e8f5e8;
+            --hover-bg: #f0f8ff;
+            --link-color: #007bff;
+            --danger-color: #d32f2f;
+            --warning-color: #ff9500;
         }
 
         /* Dark Mode Theme */
@@ -47,6 +51,10 @@
             --black-color: #ffffff;
             --warning-bg: #3a2f1a;
             --success-bg: #1a2e1a;
+            --hover-bg: #2a3a4a;
+            --link-color: #4da6ff;
+            --danger-color: #ff6b6b;
+            --warning-color: #ffb84d;
         }
 
         * {
@@ -305,11 +313,11 @@
         }
 
         .passed {
-            color: #8ACE00;
+            color: var(--accent-green);
         }
 
         .current-term {
-            background-color: #f0f8ff;
+            background-color: var(--hover-bg);
         }
 
         .download-container {
@@ -450,39 +458,6 @@
             stroke-linejoin: round;
         }
 
-        /* Dark Mode Button */
-        .dark-mode-button {
-            position: fixed;
-            bottom: 160px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color-strong);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 99;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-mode-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .dark-mode-icon {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text-primary);
-            stroke-width: 2;
-            fill: none;
-            transition: all 0.3s ease;
-        }
-
         /* Navigation Switch Button (PC only) */
         .nav-switch-button {
             position: fixed;
@@ -519,6 +494,46 @@
         /* Hide navigation switch on mobile */
         @media (max-width: 768px) {
             .nav-switch-button {
+                display: none;
+            }
+        }
+
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 160px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode-icon {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-primary);
+            stroke-width: 2;
+            fill: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Hide dark mode toggle on mobile */
+        @media (max-width: 768px) {
+            .dark-mode-toggle {
                 display: none;
             }
         }
@@ -567,6 +582,51 @@
             transition: top 0.3s ease;
         }
 
+        /* Top navigation styles */
+        .nav-container.top-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: auto;
+            right: auto;
+            padding: 0;
+            z-index: 100;
+        }
+
+        .nav-container.top-nav .nav-bar {
+            flex-direction: row;
+            max-width: 420px;
+            width: auto;
+            padding: 12px 15px;
+            gap: 0;
+            border-radius: 100px;
+        }
+
+        .nav-container.top-nav .nav-item {
+            width: 48px;
+            height: 48px;
+        }
+
+        .nav-container.top-nav .nav-label {
+            left: 50%;
+            top: 50px;
+            bottom: auto;
+            transform: translateX(-50%);
+            background-color: var(--accent-green);
+            font-size: 9px;
+            border-radius: 10px;
+        }
+
+        .nav-container.top-nav .active-indicator {
+            width: 48px;
+            height: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            left: auto;
+            transition: left 0.3s ease;
+        }
+
         /* Active indicator */
         .active-indicator {
             position: absolute;
@@ -584,6 +644,48 @@
         }
         
         .year-grades.active {
+            display: block;
+        }
+
+        /* Trimester navigation */
+        .trimester-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 16px 20px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color-strong);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .trimester-tab {
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .trimester-tab.active {
+            background: var(--accent-green);
+            color: white;
+            border-color: var(--accent-green);
+        }
+
+        .trimester-tab:hover:not(.active) {
+            background: var(--bg-quaternary);
+            border-color: var(--accent-green);
+        }
+
+        .trimester-content {
+            display: none;
+        }
+
+        .trimester-content.active {
             display: block;
         }
 
@@ -708,7 +810,7 @@
             color: var(--text-primary);
             margin: 0;
         }        .date-badge {
-            background: #f0f8ff;
+            background: var(--hover-bg);
             color: var(--accent-green);
             padding: 4px 12px;
             border-radius: 12px;
@@ -785,7 +887,7 @@
 
         .class-status.upcoming {
             background: var(--warning-bg);
-            color: #ff9500;
+            color: var(--warning-color);
         }
 
         /* Events List */
@@ -846,27 +948,33 @@
         /* Profile Styles */
         .profile-content {
             width: 95%;
-            max-width: 800px;
+            max-width: 1400px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-        }        .profile-header {
+        }
+
+        .profile-header {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 24px;
+            padding: 32px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
             position: relative;
             border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            text-align: left;
         }
 
         .profile-photo-container {
             position: relative;
-            display: inline-block;
-            margin-bottom: 16px;
-        }        .profile-photo {
-            width: 120px;
-            height: 120px;
+            flex-shrink: 0;
+        }
+
+        .profile-photo {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--accent-green);
@@ -875,7 +983,7 @@
             align-items: center;
             justify-content: center;
             color: var(--white-color);
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 600;
         }
 
@@ -883,11 +991,11 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: var(--accent-green);
-            border: 3px solid var(--white-color);
+            border: 3px solid var(--card-bg);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -901,8 +1009,8 @@
         }
 
         .camera-icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             stroke: var(--white-color);
             stroke-width: 2;
             fill: none;
@@ -912,21 +1020,67 @@
             display: none;
         }
 
+        .profile-info-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .profile-name {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            margin: 0;
         }
 
         .profile-student-id {
-            font-size: 16px;
+            font-size: 18px;
             color: var(--text-tertiary);
-            margin-bottom: 4px;
-        }        .profile-course {
-            font-size: 14px;
+            margin: 0;
+        }
+
+        .profile-course {
+            font-size: 16px;
             color: var(--accent-green);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .profile-stats-inline {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-inline-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-green);
+            line-height: 1;
+        }
+
+        .stat-inline-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-self: flex-start;
         }
 
         .profile-info-card {
@@ -1015,11 +1169,11 @@
         }        .stat-number {
             font-size: 24px;
             font-weight: 700;
-            color: #8ACE00;
+            color: var(--accent-green);
             margin-bottom: 4px;
         }.stat-label {
             font-size: 12px;
-            color: #8e8e93;
+            color: var(--text-tertiary);
             font-weight: 500;
         }
 
@@ -1199,7 +1353,7 @@
         }
 
         .calendar-day:hover {
-            background: #f0f8ff;
+            background: var(--hover-bg);
         }        .calendar-day.today {
             background: var(--accent-green);
             color: var(--white-color);
@@ -1207,7 +1361,8 @@
         }
 
         .calendar-day.other-month {
-            color: #c7c7cc;
+            color: var(--text-tertiary);
+            opacity: 0.5;
         }        @media (max-width: 768px) {
             .header {
                 padding: 16px 20px;
@@ -1290,8 +1445,25 @@
             }
             
             /* Profile mobile adjustments */
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+                font-size: 36px;
+            }
+            
+            .profile-info-main {
+                align-items: center;
+                text-align: center;
+            }
+            
             .profile-name {
-                font-size: 20px;
+                font-size: 24px;
             }
             
             .profile-student-id {
@@ -1299,7 +1471,30 @@
             }
             
             .profile-course {
-                font-size: 12px;
+                font-size: 13px;
+            }
+            
+            .profile-stats-inline {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .stat-inline-number {
+                font-size: 24px;
+            }
+            
+            .stat-inline-label {
+                font-size: 11px;
+            }
+            
+            .profile-actions {
+                width: 100%;
+                align-self: center;
+            }
+            
+            .edit-profile-btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .card-title {
@@ -1452,6 +1647,17 @@
             
             .summary-units {
                 font-size: 14px;
+            }
+            
+            .orf-download-btn {
+                font-size: 13px;
+                padding: 12px 20px;
+                width: 100%;
+            }
+            
+            .orf-icon {
+                width: 18px;
+                height: 18px;
             }
             
             /* Shop mobile adjustments */
@@ -1713,7 +1919,7 @@
 
         .form-button {
             background: transparent;
-            color: #007bff;
+            color: var(--link-color);
             border: none;
             border-radius: 12px;
             padding: 6px 12px;
@@ -1724,16 +1930,16 @@
         }
 
         .form-button:hover {
-            background: #007bff;
+            background: var(--link-color);
             color: var(--white-color);
         }
 
         .assessment-btn {
-            color: #007bff;
+            color: var(--link-color);
         }
 
         .assessment-btn:hover {
-            background: #007bff;
+            background: var(--link-color);
             color: var(--white-color);
         }        .registered-subjects {
             background: var(--card-bg);
@@ -1741,6 +1947,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             border: 1px solid var(--border-color);
+            margin-top: -80px;
         }
 
         .subjects-header {
@@ -1752,7 +1959,7 @@
         .subjects-title {
             font-size: 18px;
             font-weight: 600;
-            color: #d32f2f;
+            color: var(--danger-color);
             margin: 0;
         }
 
@@ -1828,9 +2035,51 @@
             color: var(--text-primary);
             font-size: 14px;
         }        .summary-units {
-            color: #d32f2f;
+            color: var(--danger-color);
             font-size: 16px;
-        }        /* Shop Styles */
+        }
+
+        .orf-button-container {
+            padding: 20px;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .orf-download-btn {
+            background: linear-gradient(135deg, var(--accent-green), #6ba600);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(138, 206, 0, 0.3);
+        }
+
+        .orf-download-btn:hover {
+            background: linear-gradient(135deg, #6ba600, #5a9500);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(138, 206, 0, 0.4);
+        }
+
+        .orf-download-btn:active {
+            transform: translateY(0);
+        }
+
+        .orf-icon {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        /* Shop Styles */
         .shop-content {
             width: 95%;
             max-width: 1400px;
@@ -2379,53 +2628,121 @@
         }
 
         /* Student Ledger Styles */
+        .ledger-content {
+            width: 100%;
+        }
+
         .ledger-summary {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
         }
 
         .ledger-summary-item {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .ledger-summary-item.total-charges {
-            background: linear-gradient(135deg, #8ACE00, #8ACE00);
-            color: white;
+        .ledger-summary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .ledger-summary-item.total-payments {
-            background: linear-gradient(135deg, #000000, #000000);
-            color: white;
+        .ledger-summary-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
         }
 
-        .ledger-summary-item.balance {
-            background: linear-gradient(135deg, #ff4757, #ff3838);
-            color: white;
+        .ledger-summary-item.total-charges::before {
+            background: linear-gradient(90deg, #8ACE00, #6ba600);
+        }
+
+        .ledger-summary-item.total-payments::before {
+            background: linear-gradient(90deg, #34c759, #28a745);
+        }
+
+        .ledger-summary-item.balance::before {
+            background: linear-gradient(90deg, #ff4757, #ff3838);
+        }
+
+        .ledger-summary-item .ledger-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ledger-summary-item .ledger-label svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
         }
 
         .ledger-amount {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -1px;
         }
 
-        .ledger-label {
+        .ledger-summary-item.total-charges .ledger-amount {
+            color: #8ACE00;
+        }
+
+        .ledger-summary-item.total-payments .ledger-amount {
+            color: #34c759;
+        }
+
+        .ledger-summary-item.balance .ledger-amount {
+            color: #ff4757;
+        }
+
+        .ledger-subtitle {
             font-size: 12px;
-            opacity: 0.9;
+            color: #8e8e93;
             font-weight: 500;
         }
 
         .ledger-table-container {
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+        }
+
+        .ledger-table-header {
+            padding: 24px 24px 16px 24px;
+            border-bottom: 2px solid #e5e5ea;
+        }
+
+        .ledger-table-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .ledger-table-description {
+            font-size: 13px;
+            color: #8e8e93;
         }
 
         .ledger-table {
@@ -2433,38 +2750,93 @@
             border-collapse: collapse;
         }
 
-        .ledger-table th,
-        .ledger-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #e5e5ea;
-            font-size: 14px;
+        .ledger-table thead {
+            background: var(--bg-secondary);
         }
 
         .ledger-table th {
-            background: var(--card-bg);
-            font-weight: 600;
+            padding: 16px 24px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e5e5ea;
+        }
+
+        .ledger-table td {
+            padding: 18px 24px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5ea;
+            font-size: 14px;
             color: var(--text-primary);
+        }
+
+        .ledger-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .ledger-table tbody tr:hover {
+            background: var(--bg-secondary);
         }
 
         .ledger-table tr:last-child td {
             border-bottom: none;
         }
 
+        .transaction-date {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .transaction-description {
+            color: var(--text-primary);
+        }
+
         .amount-charge {
             color: #ff4757;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
         }
 
         .amount-payment {
             color: #34c759;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
         }
 
         .amount-balance {
             font-weight: 700;
             color: var(--text-primary);
-        }        @media (max-width: 768px) {
+            font-size: 15px;
+            background: var(--bg-secondary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .transaction-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
             .account-tabs {
                 flex-direction: column;
             }
@@ -2472,6 +2844,225 @@
             .ledger-summary {
                 grid-template-columns: 1fr;
             }
+
+            .ledger-table-container {
+                overflow-x: auto;
+            }
+
+            .ledger-table {
+                min-width: 600px;
+            }
+
+            .ledger-amount {
+                font-size: 28px;
+            }
+        }
+
+        /* Payment Code Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .payment-modal {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-green), #6ba600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .payment-code-display {
+            background: var(--bg-tertiary);
+            border: 2px dashed var(--accent-green);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .payment-code-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .payment-code-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-green);
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .payment-details {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .payment-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .payment-detail-row:last-child {
+            border-bottom: none;
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 2px solid var(--border-color-strong);
+        }
+
+        .payment-detail-label {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .payment-detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .payment-detail-row:last-child .payment-detail-value {
+            font-size: 18px;
+            color: var(--accent-green);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-btn-download {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .modal-btn-download:hover {
+            background: #6ba600;
+            transform: translateY(-1px);
+        }
+
+        .modal-btn-close {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .modal-btn-close:hover {
+            background: var(--bg-quaternary);
+        }
+
+        .modal-btn svg {
+            width: 18px;
+            height: 18px;
         }
     </style>
 </head>
@@ -2615,9 +3206,41 @@
                     </div>
                     <input type="file" id="photoInput" class="photo-upload-input" accept="image/*">
                 </div>
-                <div class="profile-name">Kenji Villanea Guarino</div>
-                <div class="profile-student-id">#UA202200154</div>
-                <div class="profile-course">Bachelor of Science in Information Technology</div>
+                
+                <div class="profile-info-main">
+                    <div class="profile-name">Kenji Villanea Guarino</div>
+                    <div class="profile-student-id">#UA202200154</div>
+                    <div class="profile-course">Bachelor of Science in Information Technology</div>
+                    
+                    <div class="profile-stats-inline">
+                        <div class="stat-inline">
+                            <div class="stat-inline-number">3.85</div>
+                            <div class="stat-inline-label">GPA</div>
+                        </div>
+                        <div class="stat-inline">
+                            <div class="stat-inline-number">147</div>
+                            <div class="stat-inline-label">Total Units</div>
+                        </div>
+                        <div class="stat-inline">
+                            <div class="stat-inline-number">4th</div>
+                            <div class="stat-inline-label">Year Level</div>
+                        </div>
+                        <div class="stat-inline">
+                            <div class="stat-inline-number">98%</div>
+                            <div class="stat-inline-label">Attendance</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="edit-profile-btn" onclick="editProfile()">
+                        <svg class="edit-icon" viewBox="0 0 24 24">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit Profile
+                    </button>
+                </div>
             </div>
             
             <div class="profile-info-card">
@@ -2654,13 +3277,6 @@
                         <div class="info-value">123 Main Street, Manila, Philippines</div>
                     </div>
                 </div>
-                <button class="edit-profile-btn" onclick="editProfile()">
-                    <svg class="edit-icon" viewBox="0 0 24 24">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                    </svg>
-                    Edit Profile
-                </button>
             </div>
             
             <div class="profile-info-card">
@@ -2694,25 +3310,6 @@
                     <div class="info-item">
                         <div class="info-label">Adviser</div>
                         <div class="info-value">Prof. Joriz Chiong</div>
-                    </div>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">3.5</div>
-                        <div class="stat-label">Current GPA</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">14</div>
-                        <div class="stat-label">Units Enrolled</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">88%</div>
-                        <div class="stat-label">Attendance Rate</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Terms Left</div>
                     </div>
                 </div>
             </div>        </div>
@@ -3036,6 +3633,18 @@
                     <span class="summary-text">12.00</span>
                     <span class="summary-text">2.00</span>
                     <span class="summary-units">14.00</span>
+                </div>
+                
+                <div class="orf-button-container">
+                    <button class="orf-download-btn" id="orfDownloadBtn" onclick="downloadORF()">
+                        <svg class="orf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <path d="M12 18v-6"></path>
+                            <path d="M9 15l3 3 3-3"></path>
+                        </svg>
+                        Download Official Registration Form (ORF)
+                    </button>
                 </div>
             </div>        </div>
           <!-- Shop Content (initially hidden) -->
@@ -3549,122 +4158,56 @@
                 </div>
             </div>        </div>
         
-        <!-- Account Content (initially hidden) -->
+        <!-- Student Ledger Content (initially hidden) -->
         <div class="account-content" id="accountContent" style="display: none;">
             <div class="account-header">
-                <div class="account-title">Account Management</div>
-                <div class="account-subtitle">Manage your academic account information and documents</div>
-            </div>
-              <div class="account-tabs">
-                <button class="account-tab active" data-tab="student-info">Student Info</button>
-                <button class="account-tab" data-tab="student-ledger">Student Ledger</button>
+                <div class="account-title">Student Ledger</div>
+                <div class="account-subtitle">Transaction History and Account Balance</div>
             </div>
             
-            <!-- Student Info Tab -->
-            <div class="account-tab-content active" id="student-info">
-                <div class="student-info-card">
-                    <div class="info-section">
-                        <div class="info-section-title">Personal Information</div>
-                        <div class="info-grid-account">
-                            <div class="info-item-account">
-                                <div class="info-label-account">Full Name</div>
-                                <div class="info-value-account">Kenji Villanea Guarino</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Student ID</div>
-                                <div class="info-value-account">UA202200154</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Date of Birth</div>
-                                <div class="info-value-account">March 15, 2002</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Gender</div>
-                                <div class="info-value-account">Male</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Civil Status</div>
-                                <div class="info-value-account">Single</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Nationality</div>
-                                <div class="info-value-account">Filipino</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="info-section">
-                        <div class="info-section-title">Contact Information</div>
-                        <div class="info-grid-account">
-                            <div class="info-item-account">
-                                <div class="info-label-account">Email Address</div>
-                                <div class="info-value-account">kenji.guarino@student.ua.edu.ph</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Phone Number</div>
-                                <div class="info-value-account">+63 912 345 6789</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Address</div>
-                                <div class="info-value-account">123 Main Street, Manila, Philippines</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Emergency Contact</div>
-                                <div class="info-value-account">Maria Guarino - +63 912 345 6788</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="info-section">
-                        <div class="info-section-title">Academic Information</div>
-                        <div class="info-grid-account">
-                            <div class="info-item-account">
-                                <div class="info-label-account">Course</div>
-                                <div class="info-value-account">Bachelor of Science in Information Technology</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Year Level</div>
-                                <div class="info-value-account">4th Year</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Section</div>
-                                <div class="info-value-account">LFAU411A075</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Academic Year</div>
-                                <div class="info-value-account">2025-2026</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Enrollment Status</div>
-                                <div class="info-value-account">Currently Enrolled</div>
-                            </div>
-                            <div class="info-item-account">
-                                <div class="info-label-account">Academic Adviser</div>
-                                <div class="info-value-account">Prof. Joriz Chiong</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Student Ledger Tab -->
-            <div class="account-tab-content" id="student-ledger">
+            <!-- Student Ledger -->
+            <div class="ledger-content">
                 <div class="ledger-summary">
                     <div class="ledger-summary-item total-charges">
+                        <div class="ledger-label">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Total Charges
+                        </div>
                         <div class="ledger-amount">₱45,680.00</div>
-                        <div class="ledger-label">Total Charges</div>
+                        <div class="ledger-subtitle">All fees and charges</div>
                     </div>
                     <div class="ledger-summary-item total-payments">
+                        <div class="ledger-label">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                                <rect x="2" y="7" width="20" height="5"></rect>
+                                <line x1="12" y1="22" x2="12" y2="7"></line>
+                            </svg>
+                            Total Payments
+                        </div>
                         <div class="ledger-amount">₱43,240.05</div>
-                        <div class="ledger-label">Total Payments</div>
+                        <div class="ledger-subtitle">Payments received</div>
                     </div>
                     <div class="ledger-summary-item balance">
+                        <div class="ledger-label">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Outstanding Balance
+                        </div>
                         <div class="ledger-amount">₱2,439.95</div>
-                        <div class="ledger-label">Outstanding Balance</div>
+                        <div class="ledger-subtitle">Amount due</div>
                     </div>
                 </div>
                 
                 <div class="ledger-table-container">
+                    <div class="ledger-table-header">
+                        <div class="ledger-table-title">Transaction History</div>
+                        <div class="ledger-table-description">All your financial transactions and payments</div>
+                    </div>
                     <table class="ledger-table">
                         <thead>
                             <tr>
@@ -3677,56 +4220,60 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Aug 15, 2025</td>
-                                <td>Tuition Fee - First Term</td>
+                                <td class="transaction-date">Aug 15, 2025</td>
+                                <td class="transaction-description">Tuition Fee - First Term</td>
                                 <td class="amount-charge">₱25,000.00</td>
                                 <td>-</td>
-                                <td class="amount-balance">₱25,000.00</td>
+                                <td><span class="amount-balance">₱25,000.00</span></td>
                             </tr>
                             <tr>
-                                <td>Aug 20, 2025</td>
-                                <td>Miscellaneous Fees</td>
+                                <td class="transaction-date">Aug 20, 2025</td>
+                                <td class="transaction-description">Miscellaneous Fees</td>
                                 <td class="amount-charge">₱5,680.00</td>
                                 <td>-</td>
-                                <td class="amount-balance">₱30,680.00</td>
+                                <td><span class="amount-balance">₱30,680.00</span></td>
                             </tr>
                             <tr>
-                                <td>Sep 1, 2025</td>
-                                <td>Payment - 1st Installment</td>
+                                <td class="transaction-date">Sep 1, 2025</td>
+                                <td class="transaction-description">Payment - 1st Installment</td>
                                 <td>-</td>
                                 <td class="amount-payment">₱10,000.00</td>
-                                <td class="amount-balance">₱20,680.00</td>
+                                <td><span class="amount-balance">₱20,680.00</span></td>
                             </tr>
                             <tr>
-                                <td>Sep 15, 2025</td>
-                                <td>Payment - 2nd Installment</td>
+                                <td class="transaction-date">Sep 15, 2025</td>
+                                <td class="transaction-description">Payment - 2nd Installment</td>
                                 <td>-</td>
                                 <td class="amount-payment">₱8,550.00</td>
-                                <td class="amount-balance">₱12,130.00</td>
+                                <td><span class="amount-balance">₱12,130.00</span></td>
                             </tr>
                             <tr>
-                                <td>Oct 1, 2025</td>
-                                <td>Payment - 3rd Installment</td>
+                                <td class="transaction-date">Oct 1, 2025</td>
+                                <td class="transaction-description">Payment - 3rd Installment</td>
                                 <td>-</td>
                                 <td class="amount-payment">₱9,690.05</td>
-                                <td class="amount-balance">₱2,439.95</td>
+                                <td><span class="amount-balance">₱2,439.95</span></td>
                             </tr>
                             <tr>
-                                <td>Jan 15, 2026</td>
-                                <td>Tuition Fee - Second Term</td>
+                                <td class="transaction-date">Jan 15, 2026</td>
+                                <td class="transaction-description">Tuition Fee - Second Term</td>
                                 <td class="amount-charge">₱15,000.00</td>
                                 <td>-</td>
-                                <td class="amount-balance">₱17,439.95</td>
+                                <td><span class="amount-balance">₱17,439.95</span></td>
                             </tr>
                             <tr>
-                                <td>Feb 1, 2026</td>
-                                <td>Payment - 4th Installment (Pending)</td>
+                                <td class="transaction-date">Feb 1, 2026</td>
+                                <td class="transaction-description">
+                                    Payment - 4th Installment
+                                    <span class="transaction-status status-pending">Pending</span>
+                                </td>
                                 <td>-</td>
                                 <td class="amount-payment">₱15,000.00</td>
-                                <td class="amount-balance">₱2,439.95</td>
+                                <td><span class="amount-balance">₱2,439.95</span></td>
                             </tr>
                         </tbody>
-                    </table>                </div>
+                    </table>
+                </div>
             </div>
         </div>
         
@@ -3763,7 +4310,7 @@
                     <tbody>
                         <tr class="current-term">
                             <td>2025-2026</td>
-                            <td>First</td>
+                            <td>First Semester</td>
                             <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
                             <td>Fourth Year</td>
                             <td>Currently Enrolled</td>
@@ -3836,248 +4383,761 @@
             
             <!-- 3rd Year Grades -->
             <div class="year-grades" id="year3">
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>School Year</th>
-                            <th>Term</th>
-                            <th>Course</th>
-                            <th>Year Level</th>
-                            <th>Enrollment Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2024-2025</td>
-                            <td>Third</td>
-                            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
-                            <td>Third Year</td>
-                            <td>Completed</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>Subject Code</th>
-                            <th>Subject Title</th>
-                            <th>Professor</th>
-                            <th>Units</th>
-                            <th>Section</th>
-                            <th>FINAL GRADE</th>
-                            <th>Grade Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="subject-code">OLCAP52</td>
-                            <td class="subject-title">CAPSTONE PROJECT AND RESEARCH 2</td>
-                            <td class="professor">VILOG, JERICHO MANLANGIT</td>
-                            <td class="units">3</td>
-                            <td class="section">LFAU333A004</td>
-                            <td class="grade">1.75</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OLCC05</td>
-                            <td class="subject-title">APPLICATIONS DEVELOPMENT AND EMERGING TECHNOLOGIES (3/1)</td>
-                            <td class="professor">CHIONG, JORIZ DEDAL</td>
-                            <td class="units">4</td>
-                            <td class="section">LFAU333A004</td>
-                            <td class="grade">1.25</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OLIAS2</td>
-                            <td class="subject-title">INFORMATION ASSURANCE AND SECURITY 2 (3/1)</td>
-                            <td class="professor">CHIONG, JORIZ DEDAL</td>
-                            <td class="units">4</td>
-                            <td class="section">LFAU333A004</td>
-                            <td class="grade">1.50</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OLPF1</td>
-                            <td class="subject-title">EVENT DRIVEN PROGRAMMING (3/1)</td>
-                            <td class="professor">CHIONG, JORIZ DEDAL</td>
-                            <td class="units">4</td>
-                            <td class="section">LFAU333A004</td>
-                            <td class="grade">2.25</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Trimester Navigation -->
+                <div class="trimester-tabs">
+                    <div class="trimester-tab active" data-trimester="3-1">1st Trimester</div>
+                    <div class="trimester-tab" data-trimester="3-2">2nd Trimester</div>
+                    <div class="trimester-tab" data-trimester="3-3">3rd Trimester</div>
+                </div>
+
+                <!-- 1st Trimester -->
+                <div class="trimester-content active" id="trimester-3-1">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-2025</td>
+                                <td>First Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Third Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">OLCC04</td>
+                                <td class="subject-title">FUNDAMENTALS OF DATABASE SYSTEMS (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU322A004</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLIM1</td>
+                                <td class="subject-title">ADVANCED DATABASE SYSTEMS (3/1)</td>
+                                <td class="professor">VILOG, JERICHO MANLANGIT</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU322A004</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLNET1</td>
+                                <td class="subject-title">NETWORKING FUNDAMENTALS (3/1)</td>
+                                <td class="professor">ORIONA, JON'S IDEAN</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU322A004</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLWEB1</td>
+                                <td class="subject-title">WEB DEVELOPMENT 1 (3/1)</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU322A004</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 2nd Trimester -->
+                <div class="trimester-content" id="trimester-3-2">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-2025</td>
+                                <td>Second Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Third Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">OLIAS2</td>
+                                <td class="subject-title">INFORMATION ASSURANCE AND SECURITY 2 (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLPF1</td>
+                                <td class="subject-title">EVENT DRIVEN PROGRAMMING (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">2.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLMOB1</td>
+                                <td class="subject-title">MOBILE APPLICATION DEVELOPMENT (3/1)</td>
+                                <td class="professor">VILOG, JERICHO MANLANGIT</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLSAD1</td>
+                                <td class="subject-title">SYSTEMS ANALYSIS AND DESIGN (3/1)</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLGEC3</td>
+                                <td class="subject-title">ETHICS</td>
+                                <td class="professor">ORIGUELLE DIALENE</td>
+                                <td class="units">3</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3rd Trimester -->
+                <div class="trimester-content" id="trimester-3-3">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-2025</td>
+                                <td>Third Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Third Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">OLCAP52</td>
+                                <td class="subject-title">CAPSTONE PROJECT AND RESEARCH 2</td>
+                                <td class="professor">VILOG, JERICHO MANLANGIT</td>
+                                <td class="units">3</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLCC05</td>
+                                <td class="subject-title">APPLICATIONS DEVELOPMENT AND EMERGING TECHNOLOGIES (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLCLOUD1</td>
+                                <td class="subject-title">CLOUD COMPUTING FUNDAMENTALS (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLAI1</td>
+                                <td class="subject-title">ARTIFICIAL INTELLIGENCE (3/1)</td>
+                                <td class="professor">VILOG, JERICHO MANLANGIT</td>
+                                <td class="units">4</td>
+                                <td class="section">LFAU333A004</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <!-- 2nd Year Grades -->
             <div class="year-grades" id="year2">
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>School Year</th>
-                            <th>Term</th>
-                            <th>Course</th>
-                            <th>Year Level</th>
-                            <th>Enrollment Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2023-2024</td>
-                            <td>Third</td>
-                            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
-                            <td>Second Year</td>
-                            <td>Completed</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>Subject Code</th>
-                            <th>Subject Title</th>
-                            <th>Professor</th>
-                            <th>Units</th>
-                            <th>Section</th>
-                            <th>FINAL GRADE</th>
-                            <th>Grade Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="subject-code">GALVEACKS</td>
-                            <td class="subject-title">LIFE AND WORKS OF RIZAL</td>
-                            <td class="professor">ORIGUELLE DIALENE</td>
-                            <td class="units">3</td>
-                            <td class="section">UAU2230001</td>
-                            <td class="grade">1.25</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OCCISCOAT</td>
-                            <td class="subject-title">CISCO FUNDAMENTALS OF NETWORKING (0/1)</td>
-                            <td class="professor">ORIONA, JON'S IDEAN</td>
-                            <td class="units">4</td>
-                            <td class="section">UAU2230001</td>
-                            <td class="grade">1.50</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OLEPH</td>
-                            <td class="subject-title">SOCIAL AND PROFESSIONAL ISSUES 1</td>
-                            <td class="professor">SKAIN, CARLOSE</td>
-                            <td class="units">3</td>
-                            <td class="section">UAU2230001</td>
-                            <td class="grade">1.75</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">QUINI</td>
-                            <td class="subject-title">INFORMATION MANAGEMENT (0/1)</td>
-                            <td class="professor">SKAIN, CARLOSE</td>
-                            <td class="units">4</td>
-                            <td class="section">UAU2230001</td>
-                            <td class="grade">1.50</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">OLVETS</td>
-                            <td class="subject-title">QUANTITATIVE METHOD (INCLUDING MODELING AND SIMULATION)</td>
-                            <td class="professor">MIRADIA, JOHN EDWARD</td>
-                            <td class="units">3</td>
-                            <td class="section">UAU2230001</td>
-                            <td class="grade">2.00</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Trimester Navigation -->
+                <div class="trimester-tabs">
+                    <div class="trimester-tab active" data-trimester="2-1">1st Trimester</div>
+                    <div class="trimester-tab" data-trimester="2-2">2nd Trimester</div>
+                    <div class="trimester-tab" data-trimester="2-3">3rd Trimester</div>
+                </div>
+
+                <!-- 1st Trimester -->
+                <div class="trimester-content active" id="trimester-2-1">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-2024</td>
+                                <td>First Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Second Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">GALVEACKS</td>
+                                <td class="subject-title">LIFE AND WORKS OF RIZAL</td>
+                                <td class="professor">ORIGUELLE DIALENE</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OCCISCOAT</td>
+                                <td class="subject-title">CISCO FUNDAMENTALS OF NETWORKING (0/1)</td>
+                                <td class="professor">ORIONA, JON'S IDEAN</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLDSALG</td>
+                                <td class="subject-title">DATA STRUCTURES AND ALGORITHMS (3/1)</td>
+                                <td class="professor">MANARIO, DUNIFIAN</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLMATH2</td>
+                                <td class="subject-title">DISCRETE MATHEMATICS</td>
+                                <td class="professor">MIRADIA, JOHN EDWARD</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">2.00</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 2nd Trimester -->
+                <div class="trimester-content" id="trimester-2-2">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-2024</td>
+                                <td>Second Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Second Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">OLEPH</td>
+                                <td class="subject-title">SOCIAL AND PROFESSIONAL ISSUES 1</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">QUINI</td>
+                                <td class="subject-title">INFORMATION MANAGEMENT (0/1)</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLOBJ1</td>
+                                <td class="subject-title">OBJECT ORIENTED PROGRAMMING (3/1)</td>
+                                <td class="professor">CHIONG, JORIZ DEDAL</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLHCI1</td>
+                                <td class="subject-title">HUMAN COMPUTER INTERACTION</td>
+                                <td class="professor">VILOG, JERICHO MANLANGIT</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLGEC2</td>
+                                <td class="subject-title">ART APPRECIATION</td>
+                                <td class="professor">VVISA, STUDY R</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3rd Trimester -->
+                <div class="trimester-content" id="trimester-2-3">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-2024</td>
+                                <td>Third Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>Second Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">OLVETS</td>
+                                <td class="subject-title">QUANTITATIVE METHOD (INCLUDING MODELING AND SIMULATION)</td>
+                                <td class="professor">MIRADIA, JOHN EDWARD</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">2.00</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLARCH1</td>
+                                <td class="subject-title">COMPUTER ARCHITECTURE AND ORGANIZATION</td>
+                                <td class="professor">ORIONA, JON'S IDEAN</td>
+                                <td class="units">3</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLAS1</td>
+                                <td class="subject-title">OPERATING SYSTEMS (3/1)</td>
+                                <td class="professor">CHOICE, JON E DENAL</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLPROG2</td>
+                                <td class="subject-title">ADVANCED PROGRAMMING (3/1)</td>
+                                <td class="professor">MANARIO, DUNIFIAN</td>
+                                <td class="units">4</td>
+                                <td class="section">UAU2230001</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <!-- 1st Year Grades -->
             <div class="year-grades" id="year1">
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>School Year</th>
-                            <th>Term</th>
-                            <th>Course</th>
-                            <th>Year Level</th>
-                            <th>Enrollment Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2022-2023</td>
-                            <td>Second</td>
-                            <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
-                            <td>First Year</td>
-                            <td>Completed</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <table class="grades-table">
-                    <thead>
-                        <tr>
-                            <th>Subject Code</th>
-                            <th>Subject Title</th>
-                            <th>Professor</th>
-                            <th>Units</th>
-                            <th>Section</th>
-                            <th>FINAL GRADE</th>
-                            <th>Grade Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="subject-code">QUINTISSI</td>
-                            <td class="subject-title">FUNDAMENTALS OF OPERABLE SYSTEM (DT)</td>
-                            <td class="professor">CHOICE, JON E DENAL</td>
-                            <td class="units">4</td>
-                            <td class="section">QUANTISINXIA</td>
-                            <td class="grade">1.25</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">QUILACS</td>
-                            <td class="subject-title">INGESUL AF INGESULTE TURBO & MANUALCURE</td>
-                            <td class="professor">INGESULE LEGISLA</td>
-                            <td class="units">3</td>
-                            <td class="section">QUANTISINXIA</td>
-                            <td class="grade">1.00</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">QUOTHROSI</td>
-                            <td class="subject-title">INTRODUCTION TO COMPUTER PROGRAMMING USING VR. NET</td>
-                            <td class="professor">MORRIDA VAK TERRA K</td>
-                            <td class="units">4</td>
-                            <td class="section">QUANTISINXIA</td>
-                            <td class="grade">1.50</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">GACCII</td>
-                            <td class="subject-title">FUNDAMENTALS OF PROGRAMMING (DT)</td>
-                            <td class="professor">MANARIO, DUNIFIAN</td>
-                            <td class="units">4</td>
-                            <td class="section">QUANTISINXIA</td>
-                            <td class="grade">1.50</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                        <tr>
-                            <td class="subject-code">GASSUI</td>
-                            <td class="subject-title">THE CONTEMPORARY WORLD</td>
-                            <td class="professor">VVISA, STUDY R</td>
-                            <td class="units">3</td>
-                            <td class="section">QUANTISINXIA</td>
-                            <td class="grade">1.25</td>
-                            <td class="grade-status passed">Passed</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Trimester Navigation -->
+                <div class="trimester-tabs">
+                    <div class="trimester-tab active" data-trimester="1-1">1st Trimester</div>
+                    <div class="trimester-tab" data-trimester="1-2">2nd Trimester</div>
+                    <div class="trimester-tab" data-trimester="1-3">3rd Trimester</div>
+                </div>
+
+                <!-- 1st Trimester -->
+                <div class="trimester-content active" id="trimester-1-1">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-2023</td>
+                                <td>First Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>First Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">QUINTISSI</td>
+                                <td class="subject-title">INTRODUCTION TO COMPUTING</td>
+                                <td class="professor">CHOICE, JON E DENAL</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">QUILACS</td>
+                                <td class="subject-title">COMPUTER PROGRAMMING 1 (3/1)</td>
+                                <td class="professor">INGESULE LEGISLA</td>
+                                <td class="units">4</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.00</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLGEC1</td>
+                                <td class="subject-title">UNDERSTANDING THE SELF</td>
+                                <td class="professor">VVISA, STUDY R</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLMATH1</td>
+                                <td class="subject-title">MATHEMATICS IN THE MODERN WORLD</td>
+                                <td class="professor">MIRADIA, JOHN EDWARD</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLPE1</td>
+                                <td class="subject-title">PHYSICAL FITNESS AND WELLNESS</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">2</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 2nd Trimester -->
+                <div class="trimester-content" id="trimester-1-2">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-2023</td>
+                                <td>Second Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>First Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">QUOTHROSI</td>
+                                <td class="subject-title">COMPUTER PROGRAMMING 2 (3/1)</td>
+                                <td class="professor">MORRIDA VAK TERRA K</td>
+                                <td class="units">4</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">GACCII</td>
+                                <td class="subject-title">DISCRETE STRUCTURES</td>
+                                <td class="professor">MANARIO, DUNIFIAN</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLWEB0</td>
+                                <td class="subject-title">INTRODUCTION TO WEB DEVELOPMENT</td>
+                                <td class="professor">DATIA, MARK L</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLGEC2</td>
+                                <td class="subject-title">READINGS IN PHILIPPINE HISTORY</td>
+                                <td class="professor">SOLIS, FRANCES</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLPE2</td>
+                                <td class="subject-title">RHYTHMIC ACTIVITIES</td>
+                                <td class="professor">SKAIN, CARLOSE</td>
+                                <td class="units">2</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3rd Trimester -->
+                <div class="trimester-content" id="trimester-1-3">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Term</th>
+                                <th>Course</th>
+                                <th>Year Level</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-2023</td>
+                                <td>Third Trimester</td>
+                                <td>BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
+                                <td>First Year</td>
+                                <td>Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Title</th>
+                                <th>Professor</th>
+                                <th>Units</th>
+                                <th>Section</th>
+                                <th>FINAL GRADE</th>
+                                <th>Grade Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="subject-code">GASSUI</td>
+                                <td class="subject-title">THE CONTEMPORARY WORLD</td>
+                                <td class="professor">VVISA, STUDY R</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLDB1</td>
+                                <td class="subject-title">FUNDAMENTALS OF DATABASE SYSTEMS</td>
+                                <td class="professor">MANARIO, DUNIFIAN</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLDATA1</td>
+                                <td class="subject-title">DATA STRUCTURES AND ALGORITHMS</td>
+                                <td class="professor">CHOICE, JON E DENAL</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.75</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLGEC3</td>
+                                <td class="subject-title">PURPOSIVE COMMUNICATION</td>
+                                <td class="professor">SOLIS, FRANCES</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.50</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                            <tr>
+                                <td class="subject-code">OLNSTP1</td>
+                                <td class="subject-title">NATIONAL SERVICE TRAINING PROGRAM 1</td>
+                                <td class="professor">BALDIA, JAMES</td>
+                                <td class="units">3</td>
+                                <td class="section">QUANTISINXIA</td>
+                                <td class="grade">1.25</td>
+                                <td class="grade-status passed">Passed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <div class="download-container">
@@ -4091,7 +5151,6 @@
                 </button>
             </div>
         </div>
-    </div>
 
     <!-- Navigation Switch Button (PC only) -->
     <div class="nav-switch-button" id="navSwitchButton">
@@ -4102,8 +5161,8 @@
         </svg>
     </div>
 
-    <!-- Dark Mode Button -->
-    <div class="dark-mode-button" id="darkModeButton">
+    <!-- Dark Mode Toggle Button -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
         <svg class="dark-mode-icon" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
@@ -4160,11 +5219,9 @@
             
             <div class="nav-item" data-index="4">
                 <svg class="nav-icon registration-icon" viewBox="0 0 24 24">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    <path d="M9 14l2 2 4-4"></path>
                 </svg>
                 <div class="nav-label">Registration</div>
             </div>
@@ -4180,23 +5237,22 @@
             
             <div class="nav-item" data-index="6">
                 <svg class="nav-icon account-icon" viewBox="0 0 24 24">
-                    <path d="M12 12a4 4 0 1 0 0-8 4 4 0 1 0 0 8z"></path>
-                    <path d="M18 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <path d="M18 10a2.5 2.5 0 0 1 0 5"></path>
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    <line x1="10" y1="8" x2="16" y2="8"></line>
+                    <line x1="10" y1="12" x2="16" y2="12"></line>
+                    <line x1="10" y1="16" x2="16" y2="16"></line>
                 </svg>
-                <div class="nav-label">Account</div>
+                <div class="nav-label">Student Ledger</div>
             </div>
         </div>
     </div>
 
-    <!-- Apply theme immediately to prevent flash -->
+    <!-- Theme initialization (runs before page render to prevent flash) -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            console.log('Initial theme applied:', savedTheme);
-            console.log('HTML element data-theme:', document.documentElement.getAttribute('data-theme'));
         })();
     </script>
 
@@ -4208,10 +5264,6 @@
                 window.location.href = 'index.html';
                 return;
             }
-
-            // Initialize theme immediately (before other code runs)
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
 
             // Update profile info with logged-in user data
             const username = localStorage.getItem('username') || 'Kenji Villanea Guarino';
@@ -4247,6 +5299,37 @@
             
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', handleLogout);
+            }
+
+            // Dark mode toggle functionality
+            const darkModeToggle = document.querySelector('.dark-mode-toggle');
+            
+            function updateDarkModeIcon(theme) {
+                const isDark = theme === 'dark';
+                const iconPath = isDark
+                    ? '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>'
+                    : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                
+                darkModeToggle.innerHTML = `
+                    <svg class="dark-mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        ${iconPath}
+                    </svg>
+                `;
+            }
+            
+            if (darkModeToggle) {
+                // Set initial icon based on current theme
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                updateDarkModeIcon(currentTheme);
+                
+                darkModeToggle.addEventListener('click', function() {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateDarkModeIcon(newTheme);
+                });
             }
 
             const navItems = document.querySelectorAll('.nav-item');
@@ -4342,7 +5425,7 @@
                 window.updateActiveIndicatorBottom = function(index) {
                     if (!navContainer || !navItems || !activeIndicator) return;
                     
-                    if (!navContainer.classList.contains('side-nav')) {
+                    if (!navContainer.classList.contains('side-nav') && !navContainer.classList.contains('top-nav')) {
                         const navItem = navItems[index];
                         if (navItem) {
                             const navBar = document.querySelector('.nav-bar');
@@ -4365,29 +5448,77 @@
                     }
                 };
 
-                // Override updateActiveIndicator to handle both layouts
+                // Update active indicator for top navigation
+                window.updateActiveIndicatorTop = function(index) {
+                    if (!navContainer || !navItems || !activeIndicator) return;
+                    
+                    if (navContainer.classList.contains('top-nav')) {
+                        const navItem = navItems[index];
+                        if (navItem) {
+                            const navBar = document.querySelector('.nav-bar');
+                            if (navBar) {
+                                const itemRect = navItem.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+                                
+                                // Calculate position relative to nav bar for horizontal layout
+                                const left = itemRect.left - navBarRect.left;
+                                
+                                // Update active indicator position and size
+                                activeIndicator.style.transition = 'all 0.3s ease';
+                                activeIndicator.style.left = `${left}px`;
+                                activeIndicator.style.top = '50%';
+                                activeIndicator.style.transform = 'translateY(-50%)';
+                                activeIndicator.style.width = '48px';
+                                activeIndicator.style.height = '48px';
+                            }
+                        }
+                    }
+                };
+
+                // Override updateActiveIndicator to handle all layouts
                 originalUpdateActiveIndicator = updateActiveIndicator;
                 updateActiveIndicator = function(index) {
                     if (navContainer && navContainer.classList.contains('side-nav')) {
                         window.updateActiveIndicatorSide(index);
+                    } else if (navContainer && navContainer.classList.contains('top-nav')) {
+                        window.updateActiveIndicatorTop(index);
                     } else {
                         window.updateActiveIndicatorBottom(index);
                     }
                 };
 
-                // Check for saved navigation preference or default to bottom
-                const savedNavPosition = localStorage.getItem('navPosition') || 'bottom';
+                // Check for saved navigation preference or default to side for web
+                const savedNavPosition = localStorage.getItem('navPosition') || 'side';
                 if (savedNavPosition === 'side') {
                     navContainer.classList.add('side-nav');
                     updateNavSwitchIcon('side');
+                } else if (savedNavPosition === 'top') {
+                    navContainer.classList.add('top-nav');
+                    updateNavSwitchIcon('top');
                 }
 
                 navSwitchButton.addEventListener('click', function() {
                     const isSideNav = navContainer.classList.contains('side-nav');
+                    const isTopNav = navContainer.classList.contains('top-nav');
                     
                     if (isSideNav) {
-                        // Switch to bottom nav
+                        // Switch from side to top nav
                         navContainer.classList.remove('side-nav');
+                        navContainer.classList.add('top-nav');
+                        localStorage.setItem('navPosition', 'top');
+                        updateNavSwitchIcon('top');
+                        
+                        // Reset active indicator position for top nav
+                        setTimeout(() => {
+                            const activeNavItem = document.querySelector('.nav-item.active');
+                            if (activeNavItem && navItems && activeIndicator) {
+                                const activeIndex = parseInt(activeNavItem.getAttribute('data-index'));
+                                updateActiveIndicator(activeIndex);
+                            }
+                        }, 100);
+                    } else if (isTopNav) {
+                        // Switch from top to bottom nav
+                        navContainer.classList.remove('top-nav');
                         localStorage.setItem('navPosition', 'bottom');
                         updateNavSwitchIcon('bottom');
                         
@@ -4400,7 +5531,7 @@
                             }
                         }, 100);
                     } else {
-                        // Switch to side nav
+                        // Switch from bottom to side nav
                         navContainer.classList.add('side-nav');
                         localStorage.setItem('navPosition', 'side');
                         updateNavSwitchIcon('side');
@@ -4418,9 +5549,14 @@
 
                 function updateNavSwitchIcon(position) {
                     if (position === 'side') {
-                        navSwitchIcon.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line>';
-                    } else {
+                        // Icon for side nav - vertical bars
                         navSwitchIcon.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="9" y2="15"></line><line x1="15" y1="9" x2="15" y2="15"></line>';
+                    } else if (position === 'top') {
+                        // Icon for top nav - horizontal bars at top
+                        navSwitchIcon.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="7" y1="7" x2="17" y2="7"></line><line x1="7" y1="10" x2="17" y2="10"></line>';
+                    } else {
+                        // Icon for bottom nav - horizontal bars at bottom
+                        navSwitchIcon.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line>';
                     }
                 }
             }
@@ -4465,6 +5601,35 @@
                     
                     // Show the selected year grades
                     document.getElementById(`year${year}`).classList.add('active');
+                });
+            });
+
+            // Trimester tabs functionality
+            const trimesterTabs = document.querySelectorAll('.trimester-tab');
+            
+            trimesterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Get the parent year-grades container
+                    const yearContainer = this.closest('.year-grades');
+                    
+                    // Remove active class from all trimester tabs in this year
+                    const yearTrimesterTabs = yearContainer.querySelectorAll('.trimester-tab');
+                    yearTrimesterTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get the trimester from data attribute
+                    const trimester = this.getAttribute('data-trimester');
+                    
+                    // Hide all trimester contents in this year
+                    const trimesterContents = yearContainer.querySelectorAll('.trimester-content');
+                    trimesterContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show the selected trimester content
+                    document.getElementById(`trimester-${trimester}`).classList.add('active');
                 });
             });
             
@@ -4731,79 +5896,7 @@
             };
               window.openAssessment = function() {
                 alert('Opening Assessment Form. This would show your fees and payment options for the current term.');
-            };            // Account tab functionality
-            const accountTabs = document.querySelectorAll('.account-tab');
-            const accountTabContents = document.querySelectorAll('.account-tab-content');
-            
-            accountTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    accountTabs.forEach(t => t.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Get the tab content ID
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Hide all tab contents
-                    accountTabContents.forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    // Show the selected tab content
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-
-            // Dark Mode Functionality
-            const darkModeButton = document.getElementById('darkModeButton');
-            const darkModeIcon = document.querySelector('.dark-mode-icon');
-            
-            console.log('Dark mode button:', darkModeButton);
-            console.log('Dark mode icon:', darkModeIcon);
-            
-            if (darkModeButton && darkModeIcon) {
-                // Get current theme
-                const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-                console.log('Current theme on init:', currentTheme);
-                updateDarkModeIcon(currentTheme);
-
-                darkModeButton.addEventListener('click', function() {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    
-                    console.log('Switching from', currentTheme, 'to', newTheme);
-                    
-                    // Apply theme to document
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    
-                    // Verify it was set
-                    console.log('HTML data-theme after set:', document.documentElement.getAttribute('data-theme'));
-                    console.log('Computed styles on body:', window.getComputedStyle(document.body).backgroundColor);
-                    
-                    // Save to localStorage
-                    localStorage.setItem('theme', newTheme);
-                    
-                    // Update icon
-                    updateDarkModeIcon(newTheme);
-                    
-                    console.log('Theme changed to:', newTheme);
-                });
-
-                function updateDarkModeIcon(theme) {
-                    console.log('Updating icon for theme:', theme);
-                    if (theme === 'dark') {
-                        // Sun icon for light mode (when in dark mode, clicking switches to light)
-                        darkModeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
-                    } else {
-                        // Moon icon for dark mode (when in light mode, clicking switches to dark)
-                        darkModeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
-                    }
-                }
-            } else {
-                console.error('Dark mode button or icon not found!');
-            }
+            };
         });
 
         // Shop Section Functions
@@ -4927,22 +6020,398 @@
             // Generate a random payment code
             const paymentCode = 'PAY-' + Math.random().toString(36).substring(2, 10).toUpperCase();
             
-            let message = `Payment Code Generated!\n\n`;
-            message += `Code: ${paymentCode}\n`;
-            message += `Total Amount: ₱${total.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2})}\n\n`;
-            message += `Items (${items.length}):\n`;
-            items.forEach(item => {
-                message += `- ${item.name}: ₱${item.price.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2})}\n`;
-            });
-            message += `\nPlease use this code for payment at the cashier.`;
+            // Get current date and valid until date (7 days from now)
+            const currentDate = new Date();
+            const validUntilDate = new Date(currentDate);
+            validUntilDate.setDate(validUntilDate.getDate() + 7);
             
-            alert(message);
+            const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+            const formattedCurrentDate = currentDate.toLocaleDateString('en-US', dateOptions);
+            const formattedValidUntil = validUntilDate.toLocaleDateString('en-US', dateOptions);
             
-            // Optionally clear selections after generating code
-            // paymentCheckboxes.forEach(cb => cb.checked = false);
-            // installmentCheckboxes.forEach(cb => cb.checked = false);
-            // updateSummary();
+            // Update modal content
+            document.getElementById('modalPaymentCode').textContent = paymentCode;
+            document.getElementById('modalDate').textContent = formattedCurrentDate;
+            document.getElementById('modalValidUntil').textContent = formattedValidUntil;
+            document.getElementById('modalItemCount').textContent = items.length;
+            document.getElementById('modalTotalAmount').textContent = '₱' + total.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            
+            // Store data for download
+            window.paymentData = {
+                code: paymentCode,
+                date: formattedCurrentDate,
+                validUntil: formattedValidUntil,
+                items: items,
+                total: total
+            };
+            
+            // Show modal
+            document.getElementById('paymentModal').classList.add('active');
         }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+        }
+
+        function downloadPaymentCode() {
+            if (!window.paymentData) return;
+            
+            const data = window.paymentData;
+            let content = `====================================\n`;
+            content += `      PAYMENT CODE RECEIPT\n`;
+            content += `====================================\n\n`;
+            content += `Payment Code: ${data.code}\n`;
+            content += `Generated: ${data.date}\n`;
+            content += `Valid Until: ${data.validUntil}\n`;
+            content += `\n====================================\n`;
+            content += `           ITEMS\n`;
+            content += `====================================\n\n`;
+            
+            data.items.forEach((item, index) => {
+                content += `${index + 1}. ${item.name}\n`;
+                content += `   ₱${item.price.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2})}\n\n`;
+            });
+            
+            content += `====================================\n`;
+            content += `Total Amount: ₱${data.total.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2})}\n`;
+            content += `====================================\n\n`;
+            content += `Please present this code at the\n`;
+            content += `cashier to complete your payment.\n\n`;
+            content += `Thank you for using Student Portal!\n`;
+            
+            // Create blob and download
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `payment-code-${data.code}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function downloadORF() {
+            // Get current date
+            const currentDate = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            // Create HTML content for the ORF
+            const orfContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Official Registration Form (ORF)</title>
+                    <style>
+                        @page {
+                            size: A4;
+                            margin: 20mm;
+                        }
+                        body {
+                            font-family: Arial, sans-serif;
+                            font-size: 11pt;
+                            line-height: 1.4;
+                            color: #000;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            border-bottom: 2px solid #000;
+                            padding-bottom: 15px;
+                        }
+                        .header h1 {
+                            margin: 0;
+                            font-size: 18pt;
+                            font-weight: bold;
+                        }
+                        .header h2 {
+                            margin: 5px 0;
+                            font-size: 14pt;
+                            font-weight: normal;
+                        }
+                        .info-section {
+                            margin: 20px 0;
+                        }
+                        .info-grid {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 10px;
+                            margin-bottom: 20px;
+                        }
+                        .info-item {
+                            display: flex;
+                            padding: 5px 0;
+                        }
+                        .info-label {
+                            font-weight: bold;
+                            min-width: 150px;
+                        }
+                        .info-value {
+                            flex: 1;
+                        }
+                        .subjects-section {
+                            margin-top: 30px;
+                        }
+                        .section-title {
+                            font-size: 14pt;
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                            border-bottom: 1px solid #000;
+                            padding-bottom: 5px;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 10px;
+                        }
+                        th, td {
+                            border: 1px solid #000;
+                            padding: 8px;
+                            text-align: left;
+                            font-size: 10pt;
+                        }
+                        th {
+                            background-color: #f0f0f0;
+                            font-weight: bold;
+                        }
+                        .units-cell {
+                            text-align: center;
+                        }
+                        .total-row {
+                            font-weight: bold;
+                            background-color: #f9f9f9;
+                        }
+                        .footer {
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #000;
+                        }
+                        .signature-section {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 40px;
+                            margin-top: 50px;
+                        }
+                        .signature-block {
+                            text-align: center;
+                        }
+                        .signature-line {
+                            border-top: 1px solid #000;
+                            margin-top: 40px;
+                            padding-top: 5px;
+                            font-size: 10pt;
+                        }
+                        .print-date {
+                            text-align: right;
+                            font-size: 9pt;
+                            color: #666;
+                            margin-top: 20px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>OFFICIAL REGISTRATION FORM (ORF)</h1>
+                        <h2>Academic Year 2025-2026 - First Semester</h2>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Name:</span>
+                                <span class="info-value">GUARINO, KENJI VILLANEA</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Student Number:</span>
+                                <span class="info-value">UA202200154</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Program:</span>
+                                <span class="info-value">BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Year Level:</span>
+                                <span class="info-value">Fourth Year</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Curriculum Year:</span>
+                                <span class="info-value">2021</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Modality:</span>
+                                <span class="info-value">Limited Face-to-Face Classes (LF)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Status:</span>
+                                <span class="info-value">Continuing (Regular) (11 Units Allowed)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Section:</span>
+                                <span class="info-value">LFAU411A075</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">School Year:</span>
+                                <span class="info-value">2025-2026</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Academic Term:</span>
+                                <span class="info-value">First Semester</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subjects-section">
+                        <div class="section-title">REGISTERED SUBJECTS</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject Code</th>
+                                    <th>Subject Title</th>
+                                    <th class="units-cell">Lec</th>
+                                    <th class="units-cell">Lab</th>
+                                    <th class="units-cell">Total Units</th>
+                                    <th>Schedule</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>OLIPT2</td>
+                                    <td>INTEGRATIVE PROGRAMMING AND TECHNOLOGIES 2 (3/1)</td>
+                                    <td class="units-cell">3</td>
+                                    <td class="units-cell">1</td>
+                                    <td class="units-cell">4</td>
+                                    <td>LF-BSIT-8-LFAU411A075-TU-04:30PM-06:00PM BT-28 S-04:30PM-06:00PM BT-28</td>
+                                </tr>
+                                <tr>
+                                    <td>OLTPRAC 1</td>
+                                    <td>PRACTICUM (243 HOURS)</td>
+                                    <td class="units-cell">3</td>
+                                    <td class="units-cell">0</td>
+                                    <td class="units-cell">3</td>
+                                    <td>LF-BSIT-8-LFAU411A075-SUN-03:00PM-04:30PM</td>
+                                </tr>
+                                <tr>
+                                    <td>OLTPRAC 2</td>
+                                    <td>PRACTICUM (243 HOURS)</td>
+                                    <td class="units-cell">3</td>
+                                    <td class="units-cell">0</td>
+                                    <td class="units-cell">3</td>
+                                    <td>LF-BSIT-8-LFAU411A075-SUN-04:30PM-06:00PM</td>
+                                </tr>
+                                <tr>
+                                    <td>OLSA01</td>
+                                    <td>SYSTEM ADMINISTRATION AND MAINTENANCE (3/1)</td>
+                                    <td class="units-cell">3</td>
+                                    <td class="units-cell">1</td>
+                                    <td class="units-cell">4</td>
+                                    <td>LF-BSIT-8-LFAU411A075-WE-09:00PM-04:30PM BT-28 S-09:00PM-04:30PM BT-28</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="2" style="text-align: right; padding-right: 20px;">TOTAL UNITS:</td>
+                                    <td class="units-cell">12.00</td>
+                                    <td class="units-cell">2.00</td>
+                                    <td class="units-cell">14.00</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="footer">
+                        <div class="signature-section">
+                            <div class="signature-block">
+                                <div class="signature-line">Student's Signature over Printed Name</div>
+                            </div>
+                            <div class="signature-block">
+                                <div class="signature-line">Registrar's Signature</div>
+                            </div>
+                        </div>
+                        <div class="print-date">
+                            Generated on: ${currentDate}
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            // Create a new window and print
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(orfContent);
+            printWindow.document.close();
+            
+            // Wait for content to load, then trigger print dialog
+            printWindow.onload = function() {
+                printWindow.focus();
+                printWindow.print();
+            };
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('paymentModal');
+            if (event.target === modal) {
+                closePaymentModal();
+            }
+        });
     </script>
+
+    <!-- Payment Code Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="payment-modal">
+            <button class="modal-close" onclick="closePaymentModal()">&times;</button>
+            
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h2 class="modal-title">Payment Code Generated!</h2>
+                <p class="modal-subtitle">Use this code to complete your payment</p>
+            </div>
+
+            <div class="payment-code-display">
+                <div class="payment-code-label">Payment Code</div>
+                <div class="payment-code-value" id="modalPaymentCode">XXXXXX</div>
+            </div>
+
+            <div class="payment-details">
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Generated Date:</span>
+                    <span class="payment-detail-value" id="modalDate">-</span>
+                </div>
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Valid Until:</span>
+                    <span class="payment-detail-value" id="modalValidUntil">-</span>
+                </div>
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Selected Items:</span>
+                    <span class="payment-detail-value" id="modalItemCount">0</span>
+                </div>
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Total Amount:</span>
+                    <span class="payment-detail-value" id="modalTotalAmount">₱0.00</span>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-download" onclick="downloadPaymentCode()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Receipt
+                </button>
+                <button class="modal-btn modal-btn-close" onclick="closePaymentModal()">Close</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
